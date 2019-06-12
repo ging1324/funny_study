@@ -42,9 +42,42 @@ function addUser (req, res) {
     }) 
 }
 
+function login (req, res) {
+    let qry = 'select count(*) as cnt from user_info where user_id = ? and user_passwd = ?';
+    let param = [req.query.user_id, req.query.user_passwd];
+    connection.query(qry, param, function (err, result){
+        if(err)
+        console.error(err)
+
+        if(result[0].cnt !== 1){
+            res.status(200).json({
+                "result": "fail"
+            })
+        }else{
+            res.status(200).json({
+                "result": "success"
+            })
+        }
+    })
+}
+
+function getUserInfo (req, res) {
+    let qry = 'select user_id, user_name, user_address, user_birthday, user_sex, user_created from user_info where user_id = "'+req.query.user_id+'"';
+    connection.query(qry, function (err, result) {
+        if(err)
+        console.error('err : ', error)
+
+        res.status(200).json({
+            "result": result[0]
+        })
+    })
+}
+
 module.exports = {
     basicAPI: basicAPI,
     testAPI: testAPI,
     postTestAPI: postTestAPI,
-    addUser: addUser
+    addUser: addUser,
+    login: login,
+    getUserInfo: getUserInfo
 }
