@@ -42,4 +42,3 @@ module.exports = {
     boardList: boardList,
     boardDetail: boardDetail,
 }
->>>>>>> 0e41d86273eba72ecd72c7b285fe10ac923df9be
