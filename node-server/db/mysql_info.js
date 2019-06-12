@@ -4,7 +4,7 @@ module.exports = (function() {
             host: '127.0.0.1',
             user: 'root',
             password: '1234',
-            database: 'test',
+            database: 'funny_api',
             port: '3306'
         },
         dev:{
