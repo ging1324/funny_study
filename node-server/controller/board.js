@@ -8,7 +8,7 @@ var connection = mysql_db.init();
  * @param {*} result 
  */
 function boardList (req, result) {
-    let qry='select * from board_info';
+    let qry = 'select  board.id,board.uid,user.user_name,board.title,board.content,date_format(board.reg_date,"%Y-%m-%d") as reg_date from  board_info board left outer join user_info user on board.uid = user.uid';
     connection.query(qry, function (err, res) {
         if(err)
         console.error('에러입니다.')
@@ -17,7 +17,7 @@ function boardList (req, result) {
         console.info('success', res)
 
         result.status(200).json({
-            "result":res[0]
+            "result":res
         })
     })
 }

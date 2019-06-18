@@ -1,0 +1,42 @@
+.board-wraper {
+    width:800px
+}
+
+.board-wraper ul li{
+    border: solid 1px;
+}
+
+.board li{
+    display:inline-block;
+}
+
+.board-num{
+    list-style-type: none;
+    text-align: center;
+    width: 7%;
+}
+.board-title{
+    list-style-type: none;
+    text-align: center;
+    width:51%
+}
+
+.board-author{
+    list-style-type: none;
+    text-align: center;
+    width:20%
+}
+
+.board-date{
+    list-style-type: none;
+    text-align: center;
+    width:20%
+}
+
+.board{
+    margin-top:0px; margin-bottom:0px
+}
+
+.board-header{
+    font-weight:bold
+}
