@@ -1,0 +1,52 @@
+.board-wraper {
+    width:800px
+}
+
+table {
+    border:1px solid #333333;
+    width:800px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border:1px solid #333333
+}
+/* 
+.board-wraper ul li{
+    border: solid 1px;
+}
+
+.board li{
+    display:inline-block;
+}
+
+.board-num{
+    list-style-type: none;
+    text-align: center;
+    width: 7%;
+}
+.board-title{
+    list-style-type: none;
+    text-align: center;
+    width:51%
+}
+
+.board-author{
+    list-style-type: none;
+    text-align: center;
+    width:20%
+}
+
+.board-date{
+    list-style-type: none;
+    text-align: center;
+    width:20%
+}
+
+.board{
+    margin-top:0px; margin-bottom:0px
+}
+
+.board-header{
+    font-weight:bold
+} */
