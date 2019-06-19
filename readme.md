@@ -2,7 +2,7 @@ funny_study 사용방법
 =============
 1. mysql 설치
 + DB정보는 node-server/db/mysql_info.js 에서 변경합니다.
-+ 테이블 생성 코드는 문서 하단 참조
++ 테이블 생성 코드는 문서 하단 참조.
 2. node-server 이동 후 npm install 및 npm start 실행
 3. funny_react/tutorial 이동 후 npm install 및 npm start 실행
 
