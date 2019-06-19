@@ -44,8 +44,10 @@ class login extends Component {
                 alert('로그인 되었습니다!');
                 localStorage.setItem('is_login', true)
                 localStorage.setItem('login_info', JSON.stringify(res.data.result))
-                this.props.history.replace('/main')
+                window.location.reload('/'); 
 
+            }else{
+                alert('잘못된 계정 정보 입니다');
             }
 
         })

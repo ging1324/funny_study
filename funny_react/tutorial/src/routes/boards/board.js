@@ -13,27 +13,31 @@ class board extends Component {
     }
     render(){
         return (
-            <div className="board-wraper">
-                <ul className="board">
-                    <li className="board-header board-num">번호</li>
-                    <li className="board-header board-title">제목</li>
-                    <li className="board-header board-author">작성자</li>
-                    <li className="board-header board-date">등록일</li>
-                </ul>
-                {
-                    this.state.boardData.map((v, i)=>{
-                        return (
-                            <ul className="board" key={i}>
-                                <li className="board-num">{v.id}</li>
-                                <li className="board-title">{v.title}</li>
-                                <li className="board-author">{v.user_name}</li>
-                                <li className="board-date">{v.reg_date}</li>
-                            </ul>
-                        )
-                    })
-                }
-                게시판 입니다!!!
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <td>번호</td>
+                        <td>제목</td>
+                        <td>작성자</td>
+                        <td>등록일</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        this.state.boardData.map((v, i)=>{
+                            return (
+                                <tr className="board" key={i}>
+                                    <td className="board-num">{v.id}</td>
+                                    <td className="board-title">{v.title}</td>
+                                    <td className="board-author">{v.user_name}</td>
+                                    <td className="board-date">{v.reg_date}</td>
+                                </tr>
+                            )
+                        })
+                    }
+                </tbody>
+            </table>
+            
         )
     }
 

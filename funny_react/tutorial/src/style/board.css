@@ -2,6 +2,16 @@
     width:800px
 }
 
+table {
+    border:1px solid #333333;
+    width:800px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border:1px solid #333333
+}
+/* 
 .board-wraper ul li{
     border: solid 1px;
 }
@@ -39,4 +49,4 @@
 
 .board-header{
     font-weight:bold
-}
+} */

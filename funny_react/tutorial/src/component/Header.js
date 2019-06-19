@@ -24,6 +24,7 @@ class Header extends Component {
                     <Link to="/login" > 로그인 </Link>
                     <Link to="/join" > 회원가입 </Link>
                     <Link to="/board" > 게시판 </Link>
+                    { this.state.is_login && <span onClick={this.logout}>로그아웃</span> }
                 </div>
             </div>
         )
@@ -31,8 +32,6 @@ class Header extends Component {
 
     componentDidMount = () => {
         let isLogin = localStorage.getItem('is_login')
-        console.info('login check',isLogin )
-        console.info('login check',JSON.parse(localStorage.getItem('login_info')).user_name )
         if(isLogin){
             this.setState({
                 ...this.state,
@@ -41,6 +40,18 @@ class Header extends Component {
 
             })
         }
+    }
+    logout = () => {
+        
+        localStorage.removeItem('is_login')
+        localStorage.removeItem('login_info')
+        this.setState({
+            ...this.state,
+            is_login : false,
+            user_name : ''
+
+        })
+        window.location.reload('/'); 
     }
 
 }
