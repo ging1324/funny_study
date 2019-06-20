@@ -43,7 +43,7 @@ function addUser (req, res) {
 }
 
 function login (req, res) {
-    let qry = 'select count(*) as cnt, user_name, user_id from user_info where user_id = ? and user_passwd = ?';
+    let qry = 'select count(*) as cnt, user_name, user_id, uid from user_info where user_id = ? and user_passwd = ?';
     let param = [req.query.user_id, req.query.user_passwd];
     connection.query(qry, param, function (err, result){
         if(err)
@@ -60,7 +60,8 @@ function login (req, res) {
                 "result": {
                     "status": "success",
                     "user_name": result[0].user_name,
-                    "user_id": result[0].user_id
+                    "user_id": result[0].user_id,
+                    "uid" : result[0].uid
                 }
             })
         }
