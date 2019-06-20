@@ -68,7 +68,7 @@ body
 </pre>
 <pre>
 사용자 조회
-/getUserInfo?user_id=?
+/userInfo?user_id=?
 </pre>
 
 <pre>

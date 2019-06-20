@@ -13,6 +13,7 @@ router.get('/login', userController.login)
 router.get('/userInfo', userController.getUserInfo)
 router.get('/boardList', boardController.boardList)
 router.get('/boardDetail', boardController.boardDetail)
+router.post('/boardAdd', boardController.boardAdd)
 
 
 
