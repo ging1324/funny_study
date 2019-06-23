@@ -63,16 +63,16 @@ https://kenwheeler.github.io/slick/
 을 참고하세요  
 
 ***
-업데이트는 앞으로 이 영역에만 올릴게요
+업데이트(작업한) 내용은 앞으로 이 영역에만 올릴게요 다른분들도 올려주세요
 ======
 **2019-06-21**
 <pre>
-react에 slick-slider 를 적용했어요
+react에 slick-slider 를 적용했어요 김준호
 </pre>
 **2019-06-23**  
 <pre>
-vue에도 회원가입과 로그인을 적용했어요
-react 에 CKEditor를 적용했어요
+vue에도 회원가입과 로그인을 적용했어요 김준호
+react 에 CKEditor를 적용했어요 김준호
 </pre>
 
 ***
