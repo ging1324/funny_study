@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import '../../style/board.css';
 import {boardInsert} from '../../connect/boardConn';
+import CKEditor from 'ckeditor4-react';
 
 class boardAdd extends Component {
+    constructor(porps){
+        super(porps);
+        this.state = {
+            editorData:''
+        }
+    }
+
     render(){
         return (
             <form onSubmit={this.evtHandler}>
@@ -11,8 +19,12 @@ class boardAdd extends Component {
                         <li>제목 : <input type="text" class="title" name="title"/></li>
                     </ul>
                     <ul>
-                        <li>내용 : <textarea class="content" name = "content"></textarea></li>
+                        <CKEditor 
+                            data=""
+                            onChange={this.editorChange}
+                        />
                     </ul>
+                    <input type="hidden" class="content" name = "content" />
                     
                     <button type="submit" >저장 </button>
                 </div>
@@ -20,14 +32,20 @@ class boardAdd extends Component {
         )
     }
 
+    editorChange = (evt) => {
+        console.info('editor', evt.editor.getData());
+        this.setState({
+            editorData:evt.editor.getData()
+        })
+    }
+
     evtHandler = async(e) => {
         e.preventDefault();
-        console.info('핸들러 동작', e.target.title.value);
-        console.info('핸들러 동작', e.target.content.value);
+        console.info('핸들러 동작', e.target.cke_editor1);
         let boardData = {
             "user_id":JSON.parse(localStorage.getItem('login_info')).uid,
             "title":e.target.title.value, 
-	        "content":e.target.content.value,
+	        "content":this.state.editorData,
         }
         
         await boardInsert(boardData).then((res) => {
