@@ -3,8 +3,8 @@
     <h1>{{ msg }}</h1>
     <span>{{textData}}</span>
     <br/>
-    <button @click="changeValue">변경</button>
-    <button @click="defaultValue">초기화</button>
+    <!-- <button @click="changeValue">변경</button>
+    <button @click="defaultValue">초기화</button> -->
   </div>
 </template>
 
@@ -17,7 +17,7 @@ export default {
 
   data(){
       return {
-          textData:'data111'
+          textData:'HelloWorld.vue 의 내용 입니다.'
       }
   },
   methods:{

@@ -1,23 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <UserView/>
-  </div>
+    <div id="app">
+        {{loginName}}
+        <br/>
+        <router-link to="/home">홈 </router-link> 
+        <router-link to="/login">로그인 </router-link> 
+        <router-link to="/join">회원가입 </router-link> 
+        <router-link to="/login">게시판 </router-link>
+        <button v-if="loginStatus" @click="logout">
+            로그아웃
+        </button>
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-import UserView from './components/userView.vue'
-
 export default {
   name: 'app',
-  components: {
-    HelloWorld,
-    UserView
-  }
+  loginName:'',
+  loginStatus:'',
+  beforeMount() {
+      let loginStatus = localStorage.getItem('is_login')
+      if(loginStatus){
+          this.loginStatus = loginStatus
+          this.loginName = JSON.parse(localStorage.getItem('login_info')).user_name
+      }
+    // $el은 아직 사용할 수 없습니다.
+  },
+  methods:{
+      logout(){
+            localStorage.removeItem('is_login');
+            localStorage.removeItem('login_info');
+            this.loginName = ''
+            this.loginStatus = '',
+            alert('로그아웃 되었습니다.');
+            this.$router.push('/');
+        }
+    }
 }
+
 </script>
 
 <style>

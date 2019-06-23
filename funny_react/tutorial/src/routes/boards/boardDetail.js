@@ -25,7 +25,7 @@ class boardDetail extends Component {
                     <li class="reg-date">{this.state.boardData.reg_date}</li>
                 </ul>
                 <ul class="board-body">
-                    <li>{this.state.boardData.content}</li>
+                    <li dangerouslySetInnerHTML={{__html: this.state.boardData.content}}></li>
                 </ul>
                 <div class="btn-area">
                     <button class="list-btn" type="button" onClick={this.goList}>목록</button>
