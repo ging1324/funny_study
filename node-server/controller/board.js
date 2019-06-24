@@ -8,7 +8,7 @@ var connection = mysql_db.init();
  * @param {*} result 
  */
 function boardList (req, res) {
-    let qry = 'select  board.id,board.uid,user.user_name,board.title,board.content,date_format(board.reg_date,"%Y-%m-%d") as reg_date from  board_info board left outer join user_info user on board.uid = user.uid';
+    let qry = 'select  board.id,board.uid,user.user_name,board.title,board.content,date_format(board.reg_date,"%Y-%m-%d") as reg_date from  board_info board left outer join user_info user on board.uid = user.uid order by board.id desc';
     connection.query(qry, function (err, result) {
         if(err)
         console.error('에러입니다.')

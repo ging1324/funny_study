@@ -5,7 +5,7 @@
         <router-link to="/home">홈 </router-link> 
         <router-link to="/login">로그인 </router-link> 
         <router-link to="/join">회원가입 </router-link> 
-        <router-link to="/login">게시판 </router-link>
+        <router-link to="/boardList">게시판 </router-link>
         <button v-if="loginStatus" @click="logout">
             로그아웃
         </button>
