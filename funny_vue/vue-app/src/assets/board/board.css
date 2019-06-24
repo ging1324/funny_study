@@ -1,0 +1,53 @@
+.board-wraper {
+    width:800px
+}
+
+table {
+    border:1px solid #333333;
+    width:800px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border:1px solid #333333
+}
+
+.board-detail {
+    width:800px;
+}
+
+.btn-area .list-btn {
+    width:800px;
+}
+
+.board-head {
+    margin:0px
+}
+
+.board-body {
+    margin:0px
+}
+
+.board-head li {
+    display:inline-block;
+    border:1px solid #333333;
+    text-align: center;
+}
+
+.board-head li.title {
+    width:50%;
+}
+
+.board-head li.author {
+    width:24.5%;
+}
+
+.board-head li.reg-date {
+    width:24.5%;
+}
+.board-body li {
+    display:inline-block;
+    border:1px solid #333333;
+    width:99.56%;
+    min-height: 300px
+}

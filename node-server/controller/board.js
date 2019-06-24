@@ -8,7 +8,19 @@ var connection = mysql_db.init();
  * @param {*} result 
  */
 function boardList (req, res) {
-    let qry = 'select  board.id,board.uid,user.user_name,board.title,board.content,date_format(board.reg_date,"%Y-%m-%d") as reg_date from  board_info board left outer join user_info user on board.uid = user.uid';
+    let pageNum = req.query.num ? req.query.num-1 : 0
+    let qry =   'SELECT  * '
+                +'FROM  ('
+                +'    SELECT  board.id'
+                +'            ,board.uid'
+                +'            ,user.user_name'
+                +'            ,board.title'
+                +'            ,board.content'
+                +'            ,DATE_FORMAT(board.reg_date,"%Y-%m-%d") AS reg_date'
+                +'      FROM  board_info board left outer join user_info user on board.uid = user.uid '
+                +'ORDER BY board.id DESC '
+                +') listData '
+                +'LIMIT '+pageNum+', 10';
     connection.query(qry, function (err, result) {
         if(err)
         console.error('에러입니다.')
