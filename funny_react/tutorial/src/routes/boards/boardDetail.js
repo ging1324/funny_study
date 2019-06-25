@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../style/board.css';
-import {getBoardDetail} from '../../connect/boardConn';
+import {getBoardDetail, boardDelete} from '../../connect/boardConn';
 import qs from "query-string";
 
 class boardDetail extends Component {
@@ -29,6 +29,8 @@ class boardDetail extends Component {
                 </ul>
                 <div class="btn-area">
                     <button class="list-btn" type="button" onClick={this.goList}>목록</button>
+                    <button class="update-btn" type="button" onClick={this.goUpdate}>수정하기</button>
+                    <button class="delete-btn" type="button" onClick={this.deleteData}>삭제</button>
                 </div>
             </div>
 
@@ -53,8 +55,24 @@ class boardDetail extends Component {
     }
 
     goList = () => {
-        console.info('testq11111')
-        this.props.history.replace('/board')
+        this.props.history.push('/board')
+    }
+
+    goUpdate = () => {
+        let params = qs.parse(this.props.location.search);
+        this.props.history.push('/boardUpdate?id='+params.num)
+    }
+
+    deleteData = async() => {
+        let params = qs.parse(this.props.location.search);
+        await boardDelete(params.num).then((res) => {
+            
+            if(res.status === 200){
+                alert('삭제 되었습니다.');
+                this.props.history.replace('/board')
+            }
+        })
+
     }
 
 }export default boardDetail

@@ -49,7 +49,6 @@ class board extends Component {
 
     getBoardList = async() => {
         await boardConn().then((res) => {
-            console.info('res >>>>>>>>>>>>>>>>>', res.data.result);
             this.setState({
                 ...this.state,
                 boardData:res.data.result
@@ -59,12 +58,11 @@ class board extends Component {
     }
 
     goInsert = () => {
-        
-        this.props.history.replace('/boardAdd')
+        this.props.history.push('/boardAdd')
     }
 
     goDetail = (num) => {
-        this.props.history.replace('/boardDetail?num='+num)
+        this.props.history.push('/boardDetail?num='+num)
     }
 }
 export default board

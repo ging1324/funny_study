@@ -11,6 +11,7 @@ import board from './routes/boards/board';
 import join from './routes/account/join';
 import boardAdd from './routes/boards/boardAdd';
 import boardDetail from './routes/boards/boardDetail';
+import boardUpdate from './routes/boards/boardUpdate';
 
 class App extends Component {
     constructor(props){
@@ -30,6 +31,8 @@ class App extends Component {
                 <Route path={prefix +"/join"} component={join}/>
                 <Route path={prefix +"/boardAdd"} component={boardAdd}/>
                 <Route path={prefix +"/boardDetail"} component={boardDetail}/>
+                <Route path={prefix +"/boardUpdate"} component={boardUpdate}/>
+                
 
                 </Switch>
             </Router>
