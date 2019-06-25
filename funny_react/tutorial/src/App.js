@@ -24,6 +24,7 @@ class App extends Component {
                 <Header />
                 <Switch>
                 <Route exact path={prefix +"/"} component={mainPage} />
+                {/* exact 주어진 경로와 딱 맞아떨어져야지만 컴포넌트 보여줌 */}
                 <Route path={prefix +"/main"} component={mainPage}/>
                 <Route path={prefix +"/login"} component={login}/>
                 <Route path={prefix +"/board"} component={board}/>

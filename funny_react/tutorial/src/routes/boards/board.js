@@ -25,6 +25,7 @@ class board extends Component {
                     </thead>
                     <tbody>
                         {
+                            this.state.boardData &&
                             this.state.boardData.map((v, i)=>{
                                 return (
                                     <tr className="board" key={i} onClick={(e) =>this.goDetail(v.id)}>

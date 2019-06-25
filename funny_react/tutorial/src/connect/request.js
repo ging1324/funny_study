@@ -6,6 +6,7 @@ const BASE_URL = 'http://localhost:3000';
  * Returns a Axios Request Promise
  * method : get, post, put, patch, delete
  */
+
 export default function request({url, method = 'get', data, config}) {
   console.log('data', data)
   let api_url = BASE_URL + url;

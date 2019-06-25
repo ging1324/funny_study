@@ -20,6 +20,8 @@ module.exports = (function() {
             password: '',
             database: '',
             port: ''
-        }
+        },
+        
+        
     }
 })();
