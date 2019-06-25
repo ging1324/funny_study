@@ -71,9 +71,36 @@ function boardAdd ( req, res ) {
     }) 
 }
 
+function boardUpdate(req, res){
+    const board_info = req.body;
+    let qry = 'update board_info set title = "'+board_info.title+'", content = "'+board_info.content+'"  where id = '+board_info.id;
+
+    connection.query(qry, function (err, result) {
+
+        console.info('res', res)
+        console.info('result', result)
+
+        res.status(200).json({
+            "result":result
+        })
+    })
+}
+
+function boardDelete(req, res) {
+    const id = req.query.id;
+    let qry = 'delete from board_info where id = '+id;
+    connection.query(qry, function (err, result){
+        res.status(200).json({
+            "result": result
+        })
+    })
+}
+
 
 module.exports = {
     boardList: boardList,
     boardDetail: boardDetail,
     boardAdd: boardAdd,
+    boardUpdate: boardUpdate,
+    boardDelete: boardDelete
 }
