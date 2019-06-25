@@ -1,0 +1,71 @@
+/*  Gallery ===== s */
+h3{
+    width: 1200px;
+    padding:30px;
+    padding-bottom: 0;
+    margin: 0 auto;
+    text-align: center;
+}
+/*  //Gallery ===== e */
+
+/* GalleryList ====== s */
+.gListWrap{
+    list-style: none;
+    width: 1200px;
+    padding:30px;
+    padding-bottom: 0;
+    margin: 0 auto;
+}
+.gListWrap:after{
+    content:'';
+    display: block;
+    clear: both;
+}
+.gListWrap li{
+    overflow: hidden;
+    float: left;
+    width: 360px;
+    height: 300px;
+    margin-bottom: 40px;
+    margin-right: 55px;
+    border: 1px solid #999999;
+    background-color: #eeeeee;
+    list-style: none;
+}
+.gListWrap li:first-child{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.gListWrap li:nth-child(3n+3){
+    margin-right: 0;
+}
+.gListWrap li img{
+    width: 100%;
+    margin-top: -40px;
+}
+
+/* // GalleryList ====== e */
+
+/* Paging ===== s */
+.paging{
+    list-style:none;
+    display: flex;
+    justify-content: space-between;
+    width: 1200px;
+    margin: 0 auto 20px;
+    padding: 0 400px;
+    box-sizing: border-box;
+}
+.paging li{
+    list-style:none;
+}
+.pagingtBtn{
+    border: none;
+    background: transparent;
+    font-size: 20px;
+}
+.pagingtBtn.active{
+    border:1px solid #999999;
+}
+/* // Paging ===== e */

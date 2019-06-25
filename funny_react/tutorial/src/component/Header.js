@@ -24,6 +24,7 @@ class Header extends Component {
                     <Link to="/login" > 로그인 </Link>
                     <Link to="/join" > 회원가입 </Link>
                     <Link to="/board" > 게시판 </Link>
+                    <Link to="/gallery" > 갤러리 </Link>
                     { this.state.is_login && <span onClick={this.logout}>로그아웃</span> }
                 </div>
             </div>

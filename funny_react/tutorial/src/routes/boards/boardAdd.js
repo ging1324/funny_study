@@ -9,7 +9,7 @@ class boardAdd extends Component {
         this.state = {
             editorData:''
         }
-    }
+    } 
 
     render(){
         return (

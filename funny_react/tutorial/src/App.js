@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+// 
 import './App.css';
 
 import Header from './component/Header'
@@ -12,6 +13,10 @@ import join from './routes/account/join';
 import boardAdd from './routes/boards/boardAdd';
 import boardDetail from './routes/boards/boardDetail';
 import boardUpdate from './routes/boards/boardUpdate';
+// 추가 ======
+import gallery from './routes/gallery/gallery';
+import galleryList from './routes/gallery/galleryList';
+import paging from './routes/gallery/paging';
 
 class App extends Component {
     constructor(props){
@@ -34,7 +39,11 @@ class App extends Component {
                 <Route path={prefix +"/boardDetail"} component={boardDetail}/>
                 <Route path={prefix +"/boardUpdate"} component={boardUpdate}/>
                 
-
+                {/* 추가 ===== */}
+                <Route path={prefix + "/gallery"} component={gallery}/>
+                <Route path={prefix + "/galleryList"} component={galleryList}/>
+                <Route path={prefix + "/paging"} component={paging}/>
+                
                 </Switch>
             </Router>
         </Fragment>
