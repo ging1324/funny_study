@@ -82,7 +82,9 @@ class galleryList extends Component {
         return (
             <div>
                 <ul className="gListWrap">
-                    <li>{galleryUpload}</li>
+                    <li >
+                        <GalleryUpload/>
+                    </li>
                     {photos.map(photo => {
                         return <li><img title={photo.title} src={photo.pimages} /></li>
                     })}
