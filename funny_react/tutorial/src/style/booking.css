@@ -1,0 +1,14 @@
+.bookingList ul{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    border:solid;
+}
+
+.bookingList {
+    width:100px
+}
+
+.active {
+    background-color: #ff22dd
+}
