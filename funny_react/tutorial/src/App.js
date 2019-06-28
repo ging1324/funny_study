@@ -18,6 +18,8 @@ import gallery from './routes/gallery/gallery';
 import galleryList from './routes/gallery/galleryList';
 import paging from './routes/gallery/paging';
 
+import bookingList from './routes/booking/bookingList'
+
 class App extends Component {
     constructor(props){
         super(props);
@@ -43,6 +45,9 @@ class App extends Component {
                 <Route path={prefix + "/gallery"} component={gallery}/>
                 <Route path={prefix + "/galleryList"} component={galleryList}/>
                 <Route path={prefix + "/paging"} component={paging}/>
+
+                {/* 예약 */}
+                <Route path={prefix + "/bookingList"} component={bookingList}/>
                 
                 </Switch>
             </Router>
