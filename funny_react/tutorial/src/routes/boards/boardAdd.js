@@ -11,7 +11,7 @@ class boardAdd extends Component {
         }
     } 
 
-    render(){
+    render(){ 
         return (
             <form onSubmit={this.evtHandler}>
                 <div>

@@ -15,8 +15,8 @@ import boardDetail from './routes/boards/boardDetail';
 import boardUpdate from './routes/boards/boardUpdate';
 // 추가 ======
 import gallery from './routes/gallery/gallery';
-import galleryList from './routes/gallery/galleryList';
-import paging from './routes/gallery/paging';
+import galleryView from './routes/gallery/galleryView';
+import galleryWirte from './routes/gallery/galleryWirte';
 
 import bookingList from './routes/booking/bookingList'
 
@@ -43,8 +43,9 @@ class App extends Component {
                 
                 {/* 추가 ===== */}
                 <Route path={prefix + "/gallery"} component={gallery}/>
-                <Route path={prefix + "/galleryList"} component={galleryList}/>
-                <Route path={prefix + "/paging"} component={paging}/>
+                <Route path={prefix + "/galleryView"} component={galleryView}/>
+                <Route path={prefix + "/galleryWirte"} component={galleryWirte}/>
+
 
                 {/* 예약 */}
                 <Route path={prefix + "/bookingList"} component={bookingList}/>
