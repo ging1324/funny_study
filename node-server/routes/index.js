@@ -16,6 +16,9 @@ router.get('/boardDetail', boardController.boardDetail)
 router.post('/boardAdd', boardController.boardAdd)
 router.post('/boardUpdate', boardController.boardUpdate)
 router.post('/boardDelete', boardController.boardDelete)
+router.get('/boardTotNum', boardController.boardTotNum)
+
+
 
 
 

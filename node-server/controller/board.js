@@ -8,8 +8,9 @@ var connection = mysql_db.init();
  * @param {*} result 
  */
 function boardList (req, res) {
-    let pageNum = req.query.num ? req.query.num-1 : 0
-    let qry =   'SELECT  * '
+    let pageNum = req.query.num ? req.query.num : 0
+    let qry =   'SELECT  *, '
+                +'       (SELECT COUNT(*) FROM board_info board left outer join user_info user on board.uid = user.uid) as totalNum '
                 +'FROM  ('
                 +'    SELECT  board.id'
                 +'            ,board.uid'
@@ -21,15 +22,34 @@ function boardList (req, res) {
                 +'ORDER BY board.id DESC '
                 +') listData '
                 +'LIMIT '+pageNum+', 10';
+                console.info('data1', req.query);
+                console.info('data2', req.query.num);
+                console.info('pageNum', pageNum);
     connection.query(qry, function (err, result) {
         if(err)
-        console.error('에러입니다.')
+        console.error('에러입니다.', err)
 
 
-        console.info('success', result)
+        console.info('success', req.pageNum)
 
         res.status(200).json({
-            "result":result
+            "result": {
+                "boardList": result,
+                "currentNum": pageNum+1,
+            }
+        })
+    })
+}
+
+function boardTotNum (req, res) {
+    let qry =   'SELECT  COUNT(*) AS totalNum '
+            +   '  FROM  board_info board left outer join user_info user on board.uid = user.uid ';
+    connection.query(qry, function(err, result) {
+        if(err)
+        console.info('에러입니다.')
+
+        res.status(200).json({
+            "result":result[0]
         })
     })
 }
@@ -102,5 +122,6 @@ module.exports = {
     boardDetail: boardDetail,
     boardAdd: boardAdd,
     boardUpdate: boardUpdate,
-    boardDelete: boardDelete
+    boardDelete: boardDelete,
+    boardTotNum: boardTotNum
 }

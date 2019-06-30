@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../../style/board.css';
 
-import {boardConn} from '../../connect/boardConn';
+import {boardConn, boardTotNum} from '../../connect/boardConn';
+import Pagination from '../common/pagination';
+import qs from "query-string";
+
+
 class board extends Component {
     constructor(props){
         super(props);
         
         this.state = {
-            boardData:[]
+            boardData:[],
+            currentNum:qs.parse(this.props.location.search).currentNum?qs.parse(this.props.location.search).currentNum:1,
+            totalNum:0
+
         }
     }
     render(){
@@ -39,22 +46,43 @@ class board extends Component {
                         }
                     </tbody>
                 </table>
+                
+                <Pagination 
+                    currentNum={this.state.currentNum}/>
                 <button type="button" onClick={this.goInsert}>글쓰기 </button>
             </div>
         )
     }
 
     componentDidMount(){
+        // this.getBoardList();
+        // this.getBoardListTotCnt();
+    }
+
+    componentWillMount(){
+        
         this.getBoardList();
+        this.getBoardListTotCnt();
     }
 
     getBoardList = async() => {
-        await boardConn().then((res) => {
+        let num = (this.state.currentNum -1) * 10;
+        console.info('num', num)
+        await boardConn(num).then((res) => {
             this.setState({
                 ...this.state,
-                boardData:res.data.result
+                boardData: res.data.result.boardList,
+                currentNum: res.data.result.currentNum
             })
 
+        })
+    }
+
+    getBoardListTotCnt = async() => {
+        await boardTotNum().then((res) => {
+            this.setState({
+                totalNum: res.data.result.totalNum
+            })
         })
     }
 

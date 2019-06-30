@@ -8,7 +8,6 @@ const BASE_URL = 'http://localhost:3000';
  */
 
 export default function request({url, method = 'get', data, config}) {
-  console.log('data', data)
   let api_url = BASE_URL + url;
   return axios({
     method: method,

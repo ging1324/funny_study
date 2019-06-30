@@ -1,8 +1,8 @@
 import request from './request';
 
-export const boardConn = (query) => {
+export const boardConn = (num) => {
     return request({
-      url : '/boardList'
+      url : '/boardList?num='+num
     });
 }
 
@@ -32,5 +32,11 @@ export const boardDelete = (num) => {
     return request ({
         url: '/boardDelete?id='+num,
         method: 'POST',
+    })
+}
+
+export const boardTotNum = () => {
+    return request ({
+        url: '/boardTotNum'
     })
 }
