@@ -6,7 +6,7 @@ class galleryWirte extends Component {
             <div>
                 <form className="wirteStyle">
                     <input type="file" value="" />
-                    <textarea placeholder="글 작성">
+                    <textarea placeholder="사진 설명">
 
                     </textarea>
                 </form>

@@ -16,7 +16,7 @@ import boardUpdate from './routes/boards/boardUpdate';
 // 추가 ======
 import gallery from './routes/gallery/gallery';
 import galleryView from './routes/gallery/galleryView';
-import galleryWirte from './routes/gallery/galleryWirte';
+import galleryWirte from './routes/gallery/galleryWrite';
 
 import bookingList from './routes/booking/bookingList'
 

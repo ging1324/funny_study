@@ -56,6 +56,8 @@ h3{
     width:100vw;
     height:100vh;
     position: fixed;
+    top:0;
+    left:0;
     background-color: rgba(0,0,0,0.8);
 }
 .imgWrap{
@@ -63,10 +65,13 @@ h3{
     z-index: 10;
     left:50%;
     top:10%;
-    margin-left: -160px;
-    width: 320px;
+    transform: translate(-50%,0);
+    max-width:550px;
     height:auto;
     border: 15px solid #000;
+}
+.imgWrap img{
+    max-width: 550px;
 }
 /* // GalleryView ====== e */
 

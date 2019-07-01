@@ -1,5 +1,5 @@
 import React, { Component ,Fragment } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 
 class galleryUpload extends Component {
     constructor(props){
@@ -8,7 +8,10 @@ class galleryUpload extends Component {
 
     render() {
         return (
-            <button type="button" >등록</button>
+            <div>
+                <Link to="./galleryWrite">등록</Link>
+            </div>
+            
         );
     }
 }
