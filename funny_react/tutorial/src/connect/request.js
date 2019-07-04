@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:3000';
+const BASE_URL = 'http://ec2-54-180-31-0.ap-northeast-2.compute.amazonaws.com:3005/study';
 
 /**
  * Returns a Axios Request Promise
@@ -17,7 +17,6 @@ export default function request({url, method = 'get', data, config}) {
       'Content-Type': 'application/json;charset=UTF-8',
       'Access-Control-Allow-Origin': '*',
     },
-    // withCredentials: true,
     ...config
   }).then(
     response => {
