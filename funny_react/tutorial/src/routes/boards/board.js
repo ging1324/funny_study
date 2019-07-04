@@ -73,22 +73,27 @@ class board extends Component {
         let num = (this.state.currentNum -1) * 10;
         console.info('num', num)
         await boardConn(num).then((res) => {
-            this.setState({
-                ...this.state,
-                boardData: res.data.result.boardList,
-                currentNum: res.data.result.currentNum
-            })
+            if(res !== undefined) {
+                this.setState({
+                    ...this.state,
+                    boardData: res.data.result.boardList,
+                    currentNum: res.data.result.currentNum
+                })
+
+            }
 
         })
     }
 
     getBoardListTotCnt = async() => {
         await boardTotNum().then((res) => {
-            this.setState({
-                totalNum: res.data.result.totalNum
-            })
+            if(res !== undefined){
+                this.setState({
+                    totalNum: res.data.result.totalNum
+                })
+                return res.data.result.totalNum
+            }
             
-            return res.data.result.totalNum
         })
     }
 
