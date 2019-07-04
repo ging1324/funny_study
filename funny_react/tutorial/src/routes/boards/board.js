@@ -10,6 +10,8 @@ import qs from "query-string";
 class board extends Component {
     constructor(props){
         super(props);
+
+        
         
         this.state = {
             boardData:[],
@@ -19,6 +21,9 @@ class board extends Component {
         }
     }
     render(){
+        const props = {
+            totalNum: this.getBoardListTotCnt,
+            currentNum:this.state.currentNum}
         return (
             <div>
                 <table>
@@ -47,8 +52,7 @@ class board extends Component {
                     </tbody>
                 </table>
                 
-                <Pagination 
-                    currentNum={this.state.currentNum}/>
+                <Pagination {...props}/>
                 <button type="button" onClick={this.goInsert}>글쓰기 </button>
             </div>
         )
@@ -83,6 +87,8 @@ class board extends Component {
             this.setState({
                 totalNum: res.data.result.totalNum
             })
+            
+            return res.data.result.totalNum
         })
     }
 

@@ -55,7 +55,7 @@ class pagination extends Component {
     }
 
     componentDidMount(){
-        console.info('currentNum', this.props.currentNum)
+        console.info('currentNum', this.props.totalNum)
         this.pagingMaker();
     }
 
