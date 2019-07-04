@@ -54,7 +54,7 @@ export default {
                 'user_sex': this.userSex
             }
 
-            this.axios.post('http://localhost:3000/addUser', user_info
+            this.axios.post('http://ec2-54-180-31-0.ap-northeast-2.compute.amazonaws.com:3005/study/addUser', user_info
             )
             .then((res) => {
               if(res.status === 200 ){

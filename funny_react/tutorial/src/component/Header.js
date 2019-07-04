@@ -23,7 +23,7 @@ class Header extends Component {
                     <Link to="/" > 홈 </Link>
                     <Link to="/login" > 로그인 </Link>
                     <Link to="/join" > 회원가입 </Link>
-                    <Link to="/board" > 게시판 </Link>
+                    { this.state.is_login && <Link to="/boardList" > 게시판 </Link> }
                     <Link to="/gallery" > 갤러리 </Link>
                     {/* <Link to="/bookingList" > 예약 </Link> */}
                     
