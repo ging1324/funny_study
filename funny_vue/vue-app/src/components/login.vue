@@ -23,7 +23,7 @@ export default {
   },
   methods:{
       login(){
-          this.axios.get('http://localhost:3000/login?user_id='+this.uid+'&user_passwd='+this.upwd)
+          this.axios.get('http://ec2-54-180-31-0.ap-northeast-2.compute.amazonaws.com:3005/study/login?user_id='+this.uid+'&user_passwd='+this.upwd)
           .then((res) => {
               this.getTest = res.data.result.user_name
             //   console.log('res', res)
