@@ -83,7 +83,8 @@ class galleryList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            showPopup : false
+            showPopup : false,
+           // testFlag:false,
             // popup 안뜨는 상태
         }
     }
@@ -104,6 +105,7 @@ class galleryList extends Component {
     }
 
     render() {
+
         return (
             <div>
                 <ul className="gListWrap">
@@ -121,9 +123,21 @@ class galleryList extends Component {
                     //  ?? 닫는것...? // props 로 함수를 받아서 닫힘 버튼에 넣어줄 수 있나?
                     : null
                 }
+
+                {/* {this.state.testFlag === true && this.test} */}
             </div>
         );
+
     }
+
+    // test(){
+    //     return (
+    //         <div>aaa
+
+    //             <button onClick ></button>
+    //         </div>
+    //     )
+    // }
 }
 
 export default galleryList;
