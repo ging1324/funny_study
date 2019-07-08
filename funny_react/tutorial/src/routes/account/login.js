@@ -1,12 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { loginUser } from '../../connect/getUser';
-
+import KakaoLogin from 'react-kakao-login';
+import {GoogleLogin} from 'react-google-login';
+import styled from 'styled-components'
 class login extends Component {
     constructor(props) {
         super(props);
         this.state = {
             is_login:false,
+            id:'',
+            name:'',
+            provider:''
         }
     }
 
@@ -20,17 +25,33 @@ class login extends Component {
             </div>
            
             :
-            <form onSubmit={this.evtHandler}>
-                <div>
-                    <ul>
-                        <li>아이디 : <input type="text" class="userId" name = "userId"/></li>
-                    </ul>
-                    <ul>
-                        <li>비밀번호 : <input type="password" class="userPasswd" name="userPasswd"/></li>
-                    </ul>
-                </div>
-                <button type="submit" >로그인 </button>
-            </form>
+            
+            <Fragment>
+                <form onSubmit={this.evtHandler}>
+                    <div>
+                        <ul>
+                            <li>아이디 : <input type="text" class="userId" name = "userId"/></li>
+                        </ul>
+                        <ul>
+                            <li>비밀번호 : <input type="password" class="userPasswd" name="userPasswd"/></li>
+                        </ul>
+                    </div>
+                    <button type="submit" >로그인 </button>
+                </form>
+                <KakaoButton
+                jsKey="0b8a3e39ea26078e582d767275366c5"
+                buttonText="kakao"
+                onSuccess={this.resKakao}
+                onFailure={this.resFail}
+                getProfile="true"
+                />
+                <GoogleLogin
+                clientId = '1028572689384-kq3n2vtj88451on6ct2lc8elcdn9ijlr.apps.googleusercontent.com'
+                buttonText = '구글'
+                onSuccess = {this.resGoogle}
+                onFailure = {this.resFailGoogle}
+                />
+            </Fragment>
         )
     }
 
@@ -52,5 +73,26 @@ class login extends Component {
 
         })
     }
+    resKakao = (res) => {
+        console.info('kakao info : ', res)
+    }
+
+    resFail = (res) => {
+        console.info('fail', res)
+    }
+
+    resGoogle = (res) => {
+        console.info('googleRes')
+
+    }
+
+    resFailGoogle = (res) => {
+        console.info('googleRes fail')
+
+    }
 }
+const KakaoButton = styled(KakaoLogin) `
+padding:0;
+width:190px;
+`
 export default login
