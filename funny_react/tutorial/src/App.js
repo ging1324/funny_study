@@ -8,7 +8,7 @@ import Header from './component/Header'
 
 import mainPage from './page/mainPage';
 import login from './routes/account/login';
-import board from './routes/boards/board';
+import boardList from './routes/boards/boardList';
 import join from './routes/account/join';
 import boardAdd from './routes/boards/boardAdd';
 import boardDetail from './routes/boards/boardDetail';
@@ -35,7 +35,7 @@ class App extends Component {
                 {/* exact 주어진 경로와 딱 맞아떨어져야지만 컴포넌트 보여줌 */}
                 <Route path={prefix +"/main"} component={mainPage}/>
                 <Route path={prefix +"/login"} component={login}/>
-                <Route path={prefix +"/board"} component={board}/>
+                <Route path={prefix +"/boardList"} component={boardList}/>
                 <Route path={prefix +"/join"} component={join}/>
                 <Route path={prefix +"/boardAdd"} component={boardAdd}/>
                 <Route path={prefix +"/boardDetail"} component={boardDetail}/>

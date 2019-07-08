@@ -18,7 +18,7 @@ export default {
   },
   methods:{
       changeValue(){
-          this.axios.get('http://localhost:3000/test')
+          this.axios.get('http://ec2-54-180-31-0.ap-northeast-2.compute.amazonaws.com:3005/study/test')
           .then((res) => {
               this.getTest = res.data.result.user_name
             //   console.log('res', res)

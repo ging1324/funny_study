@@ -26,7 +26,7 @@ export default {
                 'title': this.boardTitle,
                 'content': this.content
             }
-            this.axios.post('http://localhost:3000/boardAdd', board_info).then((res) => {
+            this.axios.post('http://ec2-54-180-31-0.ap-northeast-2.compute.amazonaws.com:3005/study/boardAdd', board_info).then((res) => {
                 if(res.status === 200) {
                     alert('새 글이 등록 되었습니다.');
                     this.$router.push('/boardList');

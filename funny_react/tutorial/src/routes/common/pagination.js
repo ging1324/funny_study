@@ -87,7 +87,7 @@ class pagination extends Component {
                 selectNum = 11;
             }
         }
-        window.location.replace('/board?currentNum='+selectNum)
+        window.location.replace('/boardList?currentNum='+selectNum)
     }
 
     pagingMaker = async() => {
