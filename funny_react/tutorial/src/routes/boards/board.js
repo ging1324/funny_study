@@ -10,6 +10,8 @@ import qs from "query-string";
 class board extends Component {
     constructor(props){
         super(props);
+
+        
         
         this.state = {
             boardData:[],
@@ -19,6 +21,9 @@ class board extends Component {
         }
     }
     render(){
+        const props = {
+            totalNum: this.getBoardListTotCnt,
+            currentNum:this.state.currentNum}
         return (
             <div>
                 <table>
@@ -47,8 +52,7 @@ class board extends Component {
                     </tbody>
                 </table>
                 
-                <Pagination 
-                    currentNum={this.state.currentNum}/>
+                <Pagination {...props}/>
                 <button type="button" onClick={this.goInsert}>글쓰기 </button>
             </div>
         )
@@ -69,20 +73,27 @@ class board extends Component {
         let num = (this.state.currentNum -1) * 10;
         console.info('num', num)
         await boardConn(num).then((res) => {
-            this.setState({
-                ...this.state,
-                boardData: res.data.result.boardList,
-                currentNum: res.data.result.currentNum
-            })
+            if(res !== undefined) {
+                this.setState({
+                    ...this.state,
+                    boardData: res.data.result.boardList,
+                    currentNum: res.data.result.currentNum
+                })
+
+            }
 
         })
     }
 
     getBoardListTotCnt = async() => {
         await boardTotNum().then((res) => {
-            this.setState({
-                totalNum: res.data.result.totalNum
-            })
+            if(res !== undefined){
+                this.setState({
+                    totalNum: res.data.result.totalNum
+                })
+                return res.data.result.totalNum
+            }
+            
         })
     }
 

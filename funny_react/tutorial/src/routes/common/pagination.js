@@ -55,7 +55,7 @@ class pagination extends Component {
     }
 
     componentDidMount(){
-        console.info('currentNum', this.props.currentNum)
+        console.info('currentNum', this.props.totalNum)
         this.pagingMaker();
     }
 
@@ -92,90 +92,92 @@ class pagination extends Component {
 
     pagingMaker = async() => {
         await boardTotNum().then((res) => {
-            console.info('totalNum', res.data.result.totalNum)
+            if(res !== undefined){
+                console.info('totalNum', res.data.result.totalNum)
 
-            // 전체 컨텐츠 수
-            let totalNum = res.data.result.totalNum;
-            // 전체컨텐츠를 10으로 나눈 값
-            let pagingNumList = Math.floor(totalNum / 10)+1;
-            
-            this.setState({
-                lastNum : pagingNumList
-            })
-            
-            // 페이징 번호를 담고 있을 변수 생성
-            let arrPagingNum = []
+                // 전체 컨텐츠 수
+                let totalNum = res.data.result.totalNum;
+                // 전체컨텐츠를 10으로 나눈 값
+                let pagingNumList = Math.floor(totalNum / 10)+1;
+                
+                this.setState({
+                    lastNum : pagingNumList
+                })
+                
+                // 페이징 번호를 담고 있을 변수 생성
+                let arrPagingNum = []
 
-            // 선택된 페이징의 번호가 10 이하일 경우
-            if(this.state.currentNum <= 10){
-                // 전체 컨텐츠를 10으로 나눈 값이 10이 넘을때(마지막 페이지 번호가 11 이상일때)
-                if(pagingNumList > 10){
+                // 선택된 페이징의 번호가 10 이하일 경우
+                if(this.state.currentNum <= 10){
+                    // 전체 컨텐츠를 10으로 나눈 값이 10이 넘을때(마지막 페이지 번호가 11 이상일때)
+                    if(pagingNumList > 10){
+                        this.setState({
+                            lastFlag: true,
+                            nextFlag: true
+                        })
+                        for(let i = 1; i <= 10; i++){
+                            arrPagingNum.push(i);
+                        }
+                    }
+                    // 전체 컨텐츠를 10으로 나눈 값이 10이 넘지 않을때(마지막 페이지 번호가 1~10 일때)
+                    else{
+                        for(let i = 1; i <= pagingNumList; i++){
+                            arrPagingNum.push(i);
+                        }
+                        // 컨텐츠가 10개 이하이면 반복문에 값이 들어가지 않아 변수 길이를 체크하여 0이면 강제로 1을 넣는다
+                        if(arrPagingNum.length === 0)
+                        arrPagingNum.push(1);
+                    }
+                }
+                // 선택된 페이징의 번호가 10 이상일 경우
+                else if(this.state.currentNum > 10){
+                    console.info('>>>', this.state.currentNum)
+                    // 반복문의 시작점 계산
+                    let startNum = this.state.currentNum - (this.state.currentNum % 10) + 1;
+                    // 반복문의 마지막 번호 계산
+                    let lastNum = startNum + 9
+
+                    // 선택된 번호가 0으로 딱 떨어질 경우 해당 그룹의 마지막 번호이니 해단 변수 -9를 시작으로 해당 변수를 마지막 번호로 한다
+                    if(this.state.currentNum % 10 === 0){
+                        startNum = this.state.currentNum-9;
+                        lastNum = this.state.currentNum;
+                    }
+
+                    // 페이징 마지막 노출 번호가 lastNum 보다 작거나 같으면
+                    if(pagingNumList <= lastNum){
+                        for(let i = startNum; i <= pagingNumList; i++){
+                            arrPagingNum.push(i);
+                        }
+                    }
+                    // 페이징 마지막 노출 번호가 lstNum보다 크면 startNum에 9를 더해서 노출한다.
+                    else{
+                        for(let i = startNum; i <= startNum+9; i++){
+                            arrPagingNum.push(i);
+                        }
+                        this.setState({
+                            lastFlag: true,
+                            nextFlag: true
+                        })
+                    }
                     this.setState({
-                        lastFlag: true,
-                        nextFlag: true
+                        firstFlag: true,
+                        prevFlag: true,
+                        // nextFlag: true
                     })
-                    for(let i = 1; i <= 10; i++){
-                        arrPagingNum.push(i);
-                    }
-                }
-                // 전체 컨텐츠를 10으로 나눈 값이 10이 넘지 않을때(마지막 페이지 번호가 1~10 일때)
-                else{
-                    for(let i = 1; i <= pagingNumList; i++){
-                        arrPagingNum.push(i);
-                    }
-                    // 컨텐츠가 10개 이하이면 반복문에 값이 들어가지 않아 변수 길이를 체크하여 0이면 강제로 1을 넣는다
-                    if(arrPagingNum.length === 0)
-                    arrPagingNum.push(1);
-                }
-            }
-            // 선택된 페이징의 번호가 10 이상일 경우
-            else if(this.state.currentNum > 10){
-                console.info('>>>', this.state.currentNum)
-                // 반복문의 시작점 계산
-                let startNum = this.state.currentNum - (this.state.currentNum % 10) + 1;
-                // 반복문의 마지막 번호 계산
-                let lastNum = startNum + 9
 
-                // 선택된 번호가 0으로 딱 떨어질 경우 해당 그룹의 마지막 번호이니 해단 변수 -9를 시작으로 해당 변수를 마지막 번호로 한다
-                if(this.state.currentNum % 10 === 0){
-                    startNum = this.state.currentNum-9;
-                    lastNum = this.state.currentNum;
-                }
-
-                // 페이징 마지막 노출 번호가 lastNum 보다 작거나 같으면
-                if(pagingNumList <= lastNum){
-                    for(let i = startNum; i <= pagingNumList; i++){
-                        arrPagingNum.push(i);
+                    if(pagingNumList === lastNum){
+                        
+                        this.setState({
+                            lastFlag: false,
+                            nextFlag: false
+                        })
                     }
-                }
-                // 페이징 마지막 노출 번호가 lstNum보다 크면 startNum에 9를 더해서 노출한다.
-                else{
-                    for(let i = startNum; i <= startNum+9; i++){
-                        arrPagingNum.push(i);
-                    }
-                    this.setState({
-                        lastFlag: true,
-                        nextFlag: true
-                    })
+                    
                 }
                 this.setState({
-                    firstFlag: true,
-                    prevFlag: true,
-                    // nextFlag: true
+                    numberArr : arrPagingNum
                 })
-
-                if(pagingNumList === lastNum){
-                    
-                    this.setState({
-                        lastFlag: false,
-                        nextFlag: false
-                    })
-                }
-                
             }
-            this.setState({
-                numberArr : arrPagingNum
-            })
         })
     }
 
