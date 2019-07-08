@@ -39,7 +39,7 @@ class login extends Component {
                     <button type="submit" >로그인 </button>
                 </form>
                 <KakaoButton
-                jsKey="0b8a3e39ea26078e582d767275366c5"
+                jsKey="10b8a3e39ea26078e582d767275366c5"
                 buttonText="kakao"
                 onSuccess={this.resKakao}
                 onFailure={this.resFail}
@@ -91,8 +91,5 @@ class login extends Component {
 
     }
 }
-const KakaoButton = styled(KakaoLogin) `
-padding:0;
-width:190px;
-`
+const KakaoButton = KakaoLogin
 export default login
