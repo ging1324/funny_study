@@ -21,8 +21,9 @@ class Header extends Component {
                 }
                 <div>
                     <Link to="/" > 홈 </Link>
-                    <Link to="/login" > 로그인 </Link>
-                    <Link to="/join" > 회원가입 </Link>
+                    { !this.state.is_login && <Link to="/login" > 로그인 </Link> }
+                    { !this.state.is_login && <Link to="/join" > 회원가입 </Link> }
+                    { this.state.is_login && <Link to="/myPage" > 마이페이지 </Link> }
                     { this.state.is_login && <Link to="/boardList" > 게시판 </Link> }
                     <Link to="/gallery" > 갤러리 </Link>
                     {/* <Link to="/bookingList" > 예약 </Link> */}

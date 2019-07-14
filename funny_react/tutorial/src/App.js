@@ -20,6 +20,8 @@ import galleryWirte from './routes/gallery/galleryWrite';
 
 import bookingList from './routes/booking/bookingList'
 
+import myPage from './routes/account/myPage';
+
 class App extends Component {
     constructor(props){
         super(props);
@@ -49,6 +51,9 @@ class App extends Component {
 
                 {/* 예약 */}
                 <Route path={prefix + "/bookingList"} component={bookingList}/>
+
+                {/* 마이페이지 */}
+                <Route path={prefix + "/myPage"} component={myPage}/>
                 
                 </Switch>
             </Router>

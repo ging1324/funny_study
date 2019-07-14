@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-import { loginUser } from '../../connect/getUser';
+import { loginUser, loginForSns } from '../../connect/getUser';
 import KakaoLogin from 'react-kakao-login';
 import {GoogleLogin} from 'react-google-login';
 import styled from 'styled-components'
@@ -40,14 +40,14 @@ class login extends Component {
                 </form>
                 <KakaoButton
                 jsKey="10b8a3e39ea26078e582d767275366c5"
-                buttonText="kakao"
+                buttonText="로그인용 kakao"
                 onSuccess={this.resKakao}
                 onFailure={this.resFail}
                 getProfile="true"
                 />
                 <GoogleLogin
                 clientId = '1028572689384-kq3n2vtj88451on6ct2lc8elcdn9ijlr.apps.googleusercontent.com'
-                buttonText = '구글'
+                buttonText = '로그인용 구글'
                 onSuccess = {this.resGoogle}
                 onFailure = {this.resFailGoogle}
                 />
@@ -74,7 +74,8 @@ class login extends Component {
         })
     }
     resKakao = (res) => {
-        console.info('kakao info : ', res)
+        console.info('kakao info : ', res.profile.id)
+        this.reqUserLoginForSns('kakao', res.profile.id)
     }
 
     resFail = (res) => {
@@ -82,7 +83,8 @@ class login extends Component {
     }
 
     resGoogle = (res) => {
-        console.info('googleRes')
+        console.info('googleRes', res.profileObj.googleId)
+        this.reqUserLoginForSns('google', res.profileObj.googleId)
 
     }
 
@@ -90,6 +92,24 @@ class login extends Component {
         console.info('googleRes fail')
 
     }
+
+    reqUserLoginForSns = async(type, key) => {
+        await loginForSns(type, key).then((res) => {
+            console.info('sns login  : ', res)
+            if(res.data.result.status === 'success') {
+                alert('로그인 되었습니다!');
+                localStorage.setItem('is_login', true)
+                localStorage.setItem('login_info', JSON.stringify(res.data.result))
+                window.location.reload('/'); 
+
+            }else{
+                alert('잘못된 계정 정보 입니다');
+            }
+        })
+    }
 }
-const KakaoButton = KakaoLogin
+const KakaoButton = styled(KakaoLogin) `
+padding:0;
+width:190px;
+`
 export default login
