@@ -61,6 +61,7 @@ export default {
           .then((res) => {
             //   this.getTest = res.data.result.user_name
             //   console.log('res', res)
+            // TODO: 비밀번호 일치할 때만 로그인 성공
             if(res.status === 200){
                 alert('로그인에 성공하였습니다!!')
                 localStorage.setItem('is_login', true)
