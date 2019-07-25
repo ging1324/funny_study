@@ -3,15 +3,17 @@
         <header class="header">
             <nav class="navigation">
                 <router-link to="/home">홈 </router-link> 
-                <router-link to="/login">로그인 </router-link> 
-                <router-link to="/join">회원가입 </router-link> 
                 <router-link to="/boardList">게시판 </router-link>
             </nav>
             <div class="user">
-                <p>{{ loginName }}</p>
-                <button v-if="loginStatus" @click="logout">
-                    로그아웃
-                </button>
+                <template v-if="!loginStatus">
+                    <router-link to="/join">회원가입 </router-link> 
+                    <router-link to="/login">로그인 </router-link>
+                </template>
+                <template v-if="loginStatus">
+                    <p>{{ loginName }}</p>
+                    <button @click="logout">로그아웃</button>
+                </template>
             </div>
         </header>
         <router-view class="view"></router-view>
@@ -20,19 +22,28 @@
 
 <script>
 export default {
-  name: 'app',
-  loginName:'',
-  loginStatus:'',
-  beforeMount() {
-      let loginStatus = localStorage.getItem('is_login')
-      if(loginStatus){
-          this.loginStatus = loginStatus
-          this.loginName = JSON.parse(localStorage.getItem('login_info')).user_name
-      }
-    // $el은 아직 사용할 수 없습니다.
-  },
-  methods:{
-      logout(){
+    name: 'app',
+    data(){
+        return {
+            loginName: '',
+            loginStatus: false,
+        }
+    },
+    beforeMount() {
+      this.isLogin()
+    },
+    updated(){
+      this.isLogin()
+    },
+    methods:{
+    isLogin(){
+        let loginStatus = localStorage.getItem('is_login')
+        if(loginStatus){
+            this.loginStatus = loginStatus
+            this.loginName = JSON.parse(localStorage.getItem('login_info')).user_name
+        }
+      },
+    logout(){
             localStorage.removeItem('is_login');
             localStorage.removeItem('login_info');
             this.loginName = ''
@@ -88,9 +99,9 @@ button{
 
 .header{
     padding: .5rem 0;
+    height: 50px;
     background: dodgerblue;
     color: #fff;
-    /* font-weight: 700; */
 }
 .header .navigation > *,
 .header .user > *{
